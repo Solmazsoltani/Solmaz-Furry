@@ -449,16 +449,16 @@ def edit_artist_submission(artist_id):
   if form.validate():
     try:
     
-        artist.name==form.name
-        artist.city=form.city
-        artist.state=form.state
-        artist.phone=form.phone
-        artist.genres=form.genres
-        artist.image_link=form.image_link
-        artist.facebook_link=form.facebook_link
+        artist.name==form.name.data
+        artist.city=form.city.data
+        artist.state=form.state.data
+        artist.phone=form.phone.data
+        artist.genres=form.genres.data
+        artist.image_link=form.image_link.data
+        artist.facebook_link=form.facebook_link.data
         artist.Looking_for_Venues=form.seeking_venue.data
-        artist.Website_link=form.website_link
-        artist.Seeking_Description=form.seeking_description
+        artist.Website_link=form.website_link.data
+        artist.Seeking_Description=form.seeking_description.data
         
 
         db.session.commit()
@@ -472,8 +472,8 @@ def edit_artist_submission(artist_id):
   else:
       message = []
       for field, err in form.errors.items():
-       message.append(field + ' ' + '|'.join(err))
-  flash('Errors ' + str(message))
+           message.append(field + ' ' + '|'.join(err))
+      flash('Errors ' + str(message))
 
   return redirect(url_for('show_artist',artist_id=artist_id))
 
@@ -526,17 +526,17 @@ def edit_venue_submission(venue_id):
   if form.validate():
      
     try: 
-            venue.name=form.name,
-            venue.city=form.city,
-            venue.state=form.state,
-            venue.address=form.address,
-            venue.phone=form.phone,
-            venue.genres=form.genres,
-            venue.image_link=form.image_link,
-            venue.facebook_link=form.facebook_link,
-            venue.website=form.website_link,
-            venue.seeking_talent=form.seeking_talent.data,
-            venue.seeking_description=form.seeking_description,
+            venue.name=form.name.data
+            venue.city=form.city.data
+            venue.state=form.state.data
+            venue.address=form.address.data
+            venue.phone=form.phone.data
+            venue.genres=form.genres.data
+            venue.image_link=form.image_link.data
+            venue.facebook_link=form.facebook_link.data
+            venue.website=form.website_link.data
+            venue.seeking_talent=form.seeking_talent.data
+            venue.seeking_description=form.seeking_description.data
                
             db.session.commit()
             flash('Venue ' + request.form['name'] + ' was successfully edited!')
